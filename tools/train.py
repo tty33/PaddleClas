@@ -42,7 +42,7 @@ def parse_args():
         '-c',
         '--config',
         type=str,
-        default='configs/ResNet/ResNet50.yaml',
+        default='../configs/quick_start/ResNet50_vd.yaml',
         help='config file path')
     parser.add_argument(
         '--vdl_dir',
@@ -65,9 +65,9 @@ def main(args):
 
     config = get_config(args.config, overrides=args.override, show=True)
     # assign the place
-    gpu_id = int(os.environ.get('FLAGS_selected_gpus', 0))
-    place = fluid.CUDAPlace(gpu_id)
-
+    # gpu_id = int(os.environ.get('FLAGS_selected_gpus', 0))
+    # place = fluid.CUDAPlace(gpu_id)
+    place = fluid.CPUPlace()
     # startup_prog is used to do some parameter init work,
     # and train prog is used to hold the network
     startup_prog = fluid.Program()

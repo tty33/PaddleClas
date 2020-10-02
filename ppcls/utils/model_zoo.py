@@ -168,8 +168,12 @@ def _decompress(fname):
 
 
 def _get_pretrained():
-    with open('./ppcls/utils/pretrained.list') as flist:
-        pretrained = [line.strip() for line in flist]
+    try:
+        with open('./ppcls/utils/pretrained.list') as flist:
+            pretrained = [line.strip() for line in flist]
+    except:
+        with open('../ppcls/utils/pretrained.list') as flist:
+            pretrained = [line.strip() for line in flist]
     return pretrained
 
 

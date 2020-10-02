@@ -5,6 +5,7 @@ ARCHITECTURE:
 pretrained_model: ""
 model_save_dir: "./output/"
 classes_num: 1000
+use_gpu: False
 total_images: 1281167
 save_interval: 1
 validate: True
@@ -12,6 +13,8 @@ valid_interval: 1
 epochs: 120
 topk: 5
 image_shape: [3, 224, 224]
+
+
 
 use_mix: False
 ls_epsilon: -1

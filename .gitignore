@@ -9,3 +9,5 @@ pretrained/
 *.ipynb*
 _build/
 nohup.out
+*.jpg
+*.img

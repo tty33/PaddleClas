@@ -40,7 +40,7 @@ def parse_args():
         '-c',
         '--config',
         type=str,
-        default='configs/ResNet/ResNet50.yaml',
+        default='../configs/quick_start/ResNet50_vd.yaml',
         help='config file path')
     parser.add_argument(
         '--vdl_dir',
@@ -105,6 +105,8 @@ def main(args):
     init_model(config, train_prog, exe)
 
     train_reader = Reader(config, 'train')()
+
+
     train_dataloader.set_sample_list_generator(train_reader, places)
 
     compiled_train_prog = program.compile(config, train_prog,

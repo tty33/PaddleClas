@@ -134,7 +134,7 @@ def get_file_list(params):
     if params['mode'] == 'test':
         create_file_list(params)
 
-    with open(params['file_list']) as flist:
+    with open(params['file_list'],encoding='utf-8') as flist:
         full_lines = [line.strip() for line in flist]
 
     full_lines = shuffle_lines(full_lines, params["shuffle_seed"])

@@ -26,9 +26,9 @@ import paddle.fluid as fluid
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m", "--model", type=str)
-    parser.add_argument("-p", "--pretrained_model", type=str)
-    parser.add_argument("-o", "--output_path", type=str)
+    parser.add_argument("-m", "--model", type=str,default='ResNet50_vd')
+    parser.add_argument("-p", "--pretrained_model", type=str,default='pretrained/ResNet50_vd_pretrained')
+    parser.add_argument("-o", "--output_path", type=str,default='pretrained/output')
     parser.add_argument("--class_dim", type=int, default=1000)
     parser.add_argument("--img_size", type=int, default=224)
 
@@ -42,7 +42,7 @@ def create_input(img_size=224):
 
 
 def create_model(args, model, input, class_dim=1000):
-    if args.model == "GoogLeNet":
+    if args.model == "GoogleNet":
         out, _, _ = model.net(input=input, class_dim=class_dim)
     else:
         out = model.net(input=input, class_dim=class_dim)
@@ -70,14 +70,14 @@ def main():
     fluid.load(
         program=infer_prog, model_path=args.pretrained_model, executor=exe)
 
-    fluid.io.save_inference_model(
-        dirname=args.output_path,
-        feeded_var_names=[image.name],
-        main_program=infer_prog,
-        target_vars=out,
-        executor=exe,
-        model_filename='model',
-        params_filename='params')
+    # fluid.io.save_inference_model(
+    #     dirname=args.output_path,
+    #     feeded_var_names=[image.name],
+    #     main_program=infer_prog,
+    #     target_vars=out,
+    #     executor=exe,
+    #     model_filename='model',
+    #     params_filename='params')
 
 
 if __name__ == "__main__":
